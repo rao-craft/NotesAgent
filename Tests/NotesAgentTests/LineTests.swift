@@ -154,10 +154,22 @@ final class LookCategoryLaunchLineTests: XCTestCase {
         XCTAssertTrue(try LaunchLine.parse("note = editor space-001") == ("note", .editor("space-001")))
         XCTAssertTrue(try LaunchLine.parse(#"note = editor "Launch windows""#) == ("note", .editor("Launch windows")))
         XCTAssertEqual(LaunchState.editor("space-001").swift, #".editor("space-001")"#)
-        for (line, reason) in [("note = open space-001", "is not a state; a state is grid, memories, categories, new, or editor"),
+        // A new note already written: its title and text in quotes, a line break written `\n` or kept as it is.
+        let body = "Mars and Earth line up.\n\nPerseverance left in July 2020, \"on time\"."
+        XCTAssertTrue(try LaunchLine.parse(#"note = new "Launch windows" "Mars and Earth line up.\n\nPerseverance left in July 2020, \"on time\".""#)
+                      == ("note", .draft(title: "Launch windows", body: body)))
+        XCTAssertTrue(try LaunchLine.parse("note = new \"Launch windows\"  \"Mars and Earth line up.\n\nPerseverance left in July 2020, \\\"on time\\\".\"")
+                      == ("note", .draft(title: "Launch windows", body: body)))
+        XCTAssertTrue(try LaunchLine.parse(#"note = new "Launch windows""#) == ("note", .draft(title: "Launch windows", body: "")))
+        XCTAssertEqual(LaunchState.draft(title: "Launch windows", body: "One.\n\nTwo \"three\".").swift,
+                       #".draft(title: "Launch windows", body: "One.\n\nTwo \"three\".")"#)
+        for (line, reason) in [("note = open space-001", "is not a state; a state is grid, memories, categories, new (with a new note's title"),
                                ("note = editor", "`editor` names the note it opens"),
                                ("my note = grid", "is not a destination's name"),
-                               ("library = grid now", "`grid` takes nothing after it")] {
+                               ("library = grid now", "`grid` takes nothing after it"),
+                               ("note = new Launch windows", "`new` opens a new note, empty or written: its title and text each in quotes"),
+                               (#"note = new "Launch" "windows" "now""#, "its title and text each in quotes"),
+                               (#"note = new "Launch windows"#, "the quote is not closed")] {
             XCTAssertThrowsError(try LaunchLine.parse(line), line) { XCTAssertTrue("\($0)".contains(reason), "\($0)") }
         }
     }

@@ -27,7 +27,7 @@ field, line, key and launch state below it. **Changes** is notes' own log.
 | `sizes` | no | `key = number`, any size in points, count or fraction (`grid.minimum = 160`, `picker.detent = 0.6`); every key has a default |
 | `motion` | no | `key = animation` (`library.filter = .bouncy`) or `key = seconds` (`editor.deleteDelay = 0.6`); every key has a default |
 | `categories` | no | the categories the views start with: `general = General brown` (where new notes go), `memory = Memory green` (shown only under the memories button; none when left out), then one line a listed one, `Space brown` or `"Machine Learning" brown`, and `color = gray` for a new one |
-| `launch` | no | `destination = state` for a launch with `-destination <name>`: grid, memories, categories, new, or editor and a note's id or title (`note = editor space-001`) |
+| `launch` | no | `destination = state` for a launch with `-destination <name>`: grid, memories, categories, new (a new note's editor; with its title and text in quotes it opens written, the title focused: `note = new "Launch windows" "Mars and Earth line up…"`), or editor and a note's id or title, pushed (`note = editor space-001`) |
 
 `directory` is filled by Craft with the project folder. The person's request and the host's model are offered
 beside the call, never in it.
@@ -166,8 +166,13 @@ soon as its note has arrived.
 | `grid` | the grid as it is |
 | `memories` | the grid of memories |
 | `categories` | the category sheet over the grid |
-| `new` | a new note's editor in its sheet |
+| `new` | a new note's editor in its sheet, empty, its title focused |
+| `new "<title>" "<text>"` | a new note's editor in its sheet with that title and text already written, in the general category, its title focused at its end; the text alone may be left out |
 | `editor` | a note's editor pushed, nothing focused: `editor space-001`, the note whose id, else whose title, it names |
+
+In a written note's quotes, as in any quoted value, `\n` is a line break, `\"` a quote and `\\` a backslash:
+`note = new "Launch windows" "Mars and Earth line up…\n\nPerseverance left in July 2020…"` writes two paragraphs.
+The note is not saved until the person keeps it, as with any new note.
 
 ## Words, symbols, sizes and motion
 
@@ -363,6 +368,15 @@ and `{general}` are filled in where the table says.
 ## Changes
 
 Each change made to make this agent more precise, dated, with the run that measured it. Newest first.
+
+### 2026-11-15 · a new note already written: `new "<title>" "<text>"`
+
+Seer's reference `note` shot is the new-note sheet with "Launch windows" and two paragraphs on the Mars transfer
+already written, the title focused at its end, not a note pushed from the grid. The launch state `new` now takes
+the title and text in quotes and opens the sheet so; plain `new` and `editor <id or title>` are unchanged. The Seer
+call's note destination uses it.
+
+Measured: not yet.
 
 ### 2026-11-15 · first cut, at parity with Seer's Library and note editor
 

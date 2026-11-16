@@ -22,7 +22,7 @@
       "type" : "string"
     },
     "launch" : {
-      "description" : "`destination = state` for a launch with `-destination <name>`: grid, memories, categories, new, or editor and a note's id or title (`note = editor space-001`)",
+      "description" : "`destination = state` for a launch with `-destination <name>`: grid, memories, categories, new (a new note's editor; with its title and text in quotes it opens written, the title focused: `note = new \"Launch windows\" \"Mars and Earth line up…\"`), or editor and a note's id or title, pushed (`note = editor space-001`)",
       "items" : {
         "type" : "string"
       },

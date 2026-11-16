@@ -281,10 +281,12 @@ struct NotesLibrary<Item: NoteRepresentable>: View {
         )
     }
 
-    /// A new note in the general category, in its sheet.
-    private func startNote() {
+    /// A new note in the general category, in its sheet: empty, or with a title and text already written.
+    private func startNote(title: String? = nil, body: String? = nil) {
         guard var note = Item.notesNew else { return }
         note.noteCategory = NotesCategories.general.id
+        if let title { note.noteTitle = title }
+        if let body { note.noteBody = AttributedString(body) }
         draft = note
         NotesHaptics.light()
     }
@@ -376,6 +378,9 @@ struct NotesLibrary<Item: NoteRepresentable>: View {
         case .new:
             launched = true
             withTransaction(transaction) { startNote() }
+        case .draft(let title, let body):
+            launched = true
+            withTransaction(transaction) { startNote(title: title, body: body) }
         case .editor(let target):
             guard let note = notes.first(where: { "\($0.id)" == target }) ?? notes.first(where: { $0.noteTitle == target }) else { return }
             launched = true

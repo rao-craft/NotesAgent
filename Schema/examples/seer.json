@@ -4,5 +4,5 @@
   "look": ["accent = Color.accent", "title = Font.brandTitle", "note = Font.brandNote", "note2 = Font.brandNote2"],
   "strings": ["library.title = Library", "library.about = About Seer"],
   "categories": ["general = General brown", "memory = Memory green", "Space brown", "Cooking brown", "\"Machine Learning\" brown", "\"Ancient History\" brown", "\"Music Theory\" brown"],
-  "launch": ["library = grid", "note = editor space-001"]
+  "launch": ["library = grid", "note = new \"Launch windows\" \"Mars and Earth line up for a low-energy transfer only about every twenty-six months. Miss the window and the trip costs far more fuel, or waits for the next one.\n\nPerseverance left in July 2020 and landed in February 2021. Seven months is the usual length of the crossing.\""]
 }

@@ -77,7 +77,9 @@ final class NotesEmitTests: XCTestCase {
         let launch = try Fixture.text(result.paths, "NotesLaunch.swift")
         XCTAssertTrue(launch.contains(#"        switch UserDefaults.standard.string(forKey: "destination") {"#))
         XCTAssertTrue(launch.contains(#"        case "library": return .grid"#))
-        XCTAssertTrue(launch.contains(#"        case "note": return .editor("space-001")"#))
+        XCTAssertTrue(launch.contains(#"        case "note": return .draft(title: "Launch windows", body: "Mars and Earth line up for a low-energy transfer only about every twenty-six months. Miss the window and the trip costs far more fuel, or waits for the next one.\n\nPerseverance left in July 2020 and landed in February 2021. Seven months is the usual length of the crossing.")"#),
+                      "the note the reference shot shows: a new one, its title and two paragraphs written")
+        XCTAssertTrue(launch.contains("        case draft(title: String, body: String)"))
         let picker = try Fixture.text(result.paths, "NotesCategoryEditor.swift")
         XCTAssertTrue(picker.contains(#"will be moved to the General category.".replacingOccurrences(of: "{name}""#),
                       "the general category's name is written into the message, the deleted one's at run time")
@@ -122,13 +124,19 @@ final class NotesEmitTests: XCTestCase {
             "And assigned to your note", "Name your category...", "Save", "Confirm Category Deletion",
             #"Are you sure you want to delete this category?\nAll notes in the \"{name}\" category will be moved to the General category."#,
             "Yes, delete this category",
-            // Note editor
-            "space-001", "Title your note...", "Title your imagination...", "Title your inspiration...", "What's on your mind?",
+            // Note editor: the reference shot's new note, then the editor's own words.
+            "Launch windows", "Title your note...", "Title your imagination...", "Title your inspiration...", "What's on your mind?",
             "Note created!", "Format", "Style", "Bold", "Italic", "Underlined", "Strikethrough", "Font Size", "{size} pt",
             "Alignment", "Color", "Text", "Highlight",
         ]
         for string in quoted {
             XCTAssertTrue(code.contains("\"\(string)\""), string)
+        }
+        for sentence in ["Mars and Earth line up for a low-energy transfer only about every twenty-six months.",
+                         "Miss the window and the trip costs far more fuel, or waits for the next one.",
+                         "Perseverance left in July 2020 and landed in February 2021.",
+                         "Seven months is the usual length of the crossing."] {
+            XCTAssertTrue(code.contains(sentence), sentence)
         }
     }
 

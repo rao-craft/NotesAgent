@@ -38,7 +38,8 @@ writes with the turn.
 - **Your look and words.** `look` lines map the accent, the card's colours and the fonts to your own names. Every
   string, symbol, size and timing is a key with a default you can set.
 - **Screenshots and UI tests reach every state.** `launch` lines map a `-destination` name to the grid, the
-  memories, the category sheet, a new note, or a note's editor pushed. The views open there with no tap.
+  memories, the category sheet, a new note (empty, or with its title and text already written), or a note's editor
+  pushed. The views open there with no tap.
 - **Ready to drop in.**
   - The views take values and closures and hold no global state.
   - They present only their own sheets and the editor's push, so your app keeps its navigation.

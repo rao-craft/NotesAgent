@@ -40,7 +40,8 @@ public struct NotesAgent: GraniteAgentPackage {
         public var motion: [String]?
         /// The categories the views start with: `general = General brown`, `memory = Memory green`, `Space brown`.
         public var categories: [String]?
-        /// `destination = state`: the state a launch with `-destination <name>` opens in, like `note = editor space-001`.
+        /// `destination = state`: the state a launch with `-destination <name>` opens in, like `note = editor space-001`
+        /// or `note = new "Launch windows" "Mars and Earth…"`.
         public var launch: [String]?
         /// The host's folder.
         public var directory: String?
@@ -79,7 +80,7 @@ public struct NotesAgent: GraniteAgentPackage {
         "sizes": "`key = number`, any size in points, count or fraction (`grid.minimum = 160`, `picker.detent = 0.6`); every key has a default",
         "motion": "`key = animation` (`library.filter = .bouncy`) or `key = seconds` (`editor.deleteDelay = 0.6`); every key has a default",
         "categories": "the categories the views start with: `general = General brown` (where new notes go), `memory = Memory green` (shown only under the memories button; none when left out), then one line a listed one, `Space brown` or `\"Machine Learning\" brown`, and `color = gray` for a new one",
-        "launch": "`destination = state` for a launch with `-destination <name>`: grid, memories, categories, new, or editor and a note's id or title (`note = editor space-001`)",
+        "launch": "`destination = state` for a launch with `-destination <name>`: grid, memories, categories, new (a new note's editor; with its title and text in quotes it opens written, the title focused: `note = new \"Launch windows\" \"Mars and Earth line up…\"`), or editor and a note's id or title, pushed (`note = editor space-001`)",
     ]
     public static let guide = """
         Tag notes for an app that keeps notes: a library of note cards in a grid of adaptive columns (title, date, \
@@ -100,8 +101,9 @@ public struct NotesAgent: GraniteAgentPackage {
         names (`accent = Color.accent`, `title = Font.brandTitle`). `strings`, `symbols`, `sizes` and `motion` set \
         any word, SF Symbol, size or timing by key (the reference lists every key with its default). `categories` \
         lists the categories the views start with; a note names its category by id or name. `launch` maps a \
-        destination to the state it opens in (`library = grid`, `note = editor space-001`), read from the \
-        `destination` default that `-destination <name>` sets. Example, a journal: {"mappings": ["note: Entry \
+        destination to the state it opens in (`library = grid`, `note = editor space-001` pushes a note, `note = \
+        new "A title" "Its text"` opens a new note already written), read from the `destination` default that \
+        `-destination <name>` sets. Example, a journal: {"mappings": ["note: Entry \
         title=headline body=text category=mood date=writtenAt new=Entry()"], "strings": ["library.title = \
         Journal"], "categories": ["general = Unsorted gray", "Happy yellow", "Calm teal"], "launch": ["journal = \
         grid"]}. A line it cannot read is refused with the reason and nothing is written: fix the line and call \
