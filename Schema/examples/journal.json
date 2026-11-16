@@ -1,0 +1,10 @@
+{
+  "into": "Journal/Notes",
+  "mappings": ["note: Entry title=headline body=text category=mood date=writtenAt new=Entry()", "category: Mood name=name color=tint"],
+  "strings": ["library.title = Journal", "library.memoriesTitle = Highlights", "library.emptyTitle = Nothing written yet", "library.emptyAction = Write the first entry", "editor.titlePlaceholder = Name today... | What happened?"],
+  "symbols": ["library.new = square.and.pencil", "library.memories = star", "library.memoriesOn = star.fill"],
+  "sizes": ["grid.minimum = 180", "card.radius = 12"],
+  "motion": ["library.filter = .snappy"],
+  "categories": ["general = Unsorted gray", "memory = Highlight yellow", "color = teal"],
+  "launch": ["journal = grid", "journal.today = new"]
+}

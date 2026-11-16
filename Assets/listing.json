@@ -1,0 +1,19 @@
+{
+  "name": "Notes",
+  "tagline": "A notes library and a rich-text note editor for any app: a grid of note cards, categories and a Format sheet, from the app's own note type.",
+  "category": "developer",
+  "keywords": [
+    "swiftui",
+    "library",
+    "rich text",
+    "editor",
+    "categories",
+    "journal",
+    "granite",
+    "notes"
+  ],
+  "platforms": [
+    "macOS 14"
+  ],
+  "license": "MIT"
+}

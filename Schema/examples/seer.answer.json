@@ -1,0 +1,257 @@
+{
+  "agent" : {
+    "word" : "notes"
+  },
+  "conformances" : [
+    "Note: note"
+  ],
+  "expected" : [
+    {
+      "kind" : "view",
+      "name" : "NotesLibrary"
+    },
+    {
+      "kind" : "view",
+      "name" : "NoteEditor"
+    },
+    {
+      "kind" : "view",
+      "name" : "NoteCard"
+    },
+    {
+      "kind" : "view",
+      "name" : "NoteCardPreview"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesEmptyList"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesNoResults"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesCategoryPicker"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesCategoryFiling"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesCategoryEditor"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesCategoryButton"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesMaterialButton"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesCircleButton"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesDismissButton"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesBottomBlur"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesTextView"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesFormattingBar"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesFormatSheet"
+    },
+    {
+      "kind" : "conformance",
+      "name" : "Note"
+    }
+  ],
+  "format" : "granite-answer/1",
+  "made" : [
+    {
+      "kind" : "view",
+      "name" : "NotesLibrary",
+      "path" : "Components/Notes/NotesLibrary.swift",
+      "state" : "written"
+    },
+    {
+      "kind" : "view",
+      "name" : "NoteEditor",
+      "path" : "Components/Notes/NoteEditor.swift",
+      "state" : "written"
+    },
+    {
+      "kind" : "view",
+      "name" : "NoteCard",
+      "path" : "Components/Notes/NoteCard.swift",
+      "state" : "written"
+    },
+    {
+      "kind" : "view",
+      "name" : "NoteCardPreview",
+      "path" : "Components/Notes/NoteCardPreview.swift",
+      "state" : "written"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesEmptyList",
+      "path" : "Components/Notes/NotesEmptyList.swift",
+      "state" : "written"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesNoResults",
+      "path" : "Components/Notes/NotesNoResults.swift",
+      "state" : "written"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesCategoryPicker",
+      "path" : "Components/Notes/NotesCategoryPicker.swift",
+      "state" : "written"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesCategoryFiling",
+      "path" : "Components/Notes/NotesCategoryFiling.swift",
+      "state" : "written"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesCategoryEditor",
+      "path" : "Components/Notes/NotesCategoryEditor.swift",
+      "state" : "written"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesCategoryButton",
+      "path" : "Components/Notes/NotesCategoryButton.swift",
+      "state" : "written"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesMaterialButton",
+      "path" : "Components/Notes/NotesMaterialButton.swift",
+      "state" : "written"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesCircleButton",
+      "path" : "Components/Notes/NotesCircleButton.swift",
+      "state" : "written"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesDismissButton",
+      "path" : "Components/Notes/NotesDismissButton.swift",
+      "state" : "written"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesBottomBlur",
+      "path" : "Components/Notes/NotesBottomBlur.swift",
+      "state" : "written"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesTextView",
+      "path" : "Components/Notes/NotesTextView.swift",
+      "state" : "written"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesFormattingBar",
+      "path" : "Components/Notes/NotesFormattingBar.swift",
+      "state" : "written"
+    },
+    {
+      "kind" : "view",
+      "name" : "NotesFormatSheet",
+      "path" : "Components/Notes/NotesFormatSheet.swift",
+      "state" : "written"
+    },
+    {
+      "kind" : "conformance",
+      "name" : "Note",
+      "path" : "Components/Notes/Conformances/Note+Note.swift",
+      "state" : "written"
+    }
+  ],
+  "notes" : [
+
+  ],
+  "path" : "Components/Notes/NotesLibrary.swift",
+  "paths" : [
+    "Components/Notes/NotesLibrary.swift",
+    "Components/Notes/NoteEditor.swift",
+    "Components/Notes/NoteCard.swift",
+    "Components/Notes/NoteCardPreview.swift",
+    "Components/Notes/NotesEmptyList.swift",
+    "Components/Notes/NotesNoResults.swift",
+    "Components/Notes/NotesCategoryPicker.swift",
+    "Components/Notes/NotesCategoryFiling.swift",
+    "Components/Notes/NotesCategoryEditor.swift",
+    "Components/Notes/NotesCategoryButton.swift",
+    "Components/Notes/NotesMaterialButton.swift",
+    "Components/Notes/NotesCircleButton.swift",
+    "Components/Notes/NotesDismissButton.swift",
+    "Components/Notes/NotesBottomBlur.swift",
+    "Components/Notes/NotesTextView.swift",
+    "Components/Notes/NotesFormattingBar.swift",
+    "Components/Notes/NotesFormatSheet.swift",
+    "Components/Notes/NotesGradientButtonStyle.swift",
+    "Components/Notes/NotesGradientField.swift",
+    "Components/Notes/NotesText.swift",
+    "Components/Notes/NotesStyle.swift",
+    "Components/Notes/NotesTextModel.swift",
+    "Components/Notes/NotesTextStyle.swift",
+    "Components/Notes/NotesRichText.swift",
+    "Components/Notes/NotesPlatform.swift",
+    "Components/Notes/NotesProtocols.swift",
+    "Components/Notes/NotesValue.swift",
+    "Components/Notes/NotesCategory.swift",
+    "Components/Notes/NotesEntry.swift",
+    "Components/Notes/NotesLook.swift",
+    "Components/Notes/NotesCategories.swift",
+    "Components/Notes/NotesLaunch.swift",
+    "Components/Notes/Conformances/Note+Note.swift"
+  ],
+  "problems" : [
+
+  ],
+  "roots" : [
+    "NotesLibrary(notes: [Note], categories: [any NoteCategoryRepresentable] = [], refresh: (() async throws -> Void)? = nil, save: ((Note) async throws -> Void)? = nil, delete: ((Note) async throws -> Void)? = nil, about: (() -> Void)? = nil, toast: ((String) -> Void)? = nil, saveCategory: ((NotesCategory) async throws -> Void)? = nil, deleteCategory: ((NotesCategory) async throws -> Void)? = nil)"
+  ],
+  "views" : [
+    "NotesLibrary",
+    "NoteEditor",
+    "NoteCard",
+    "NoteCardPreview",
+    "NotesEmptyList",
+    "NotesNoResults",
+    "NotesCategoryPicker",
+    "NotesCategoryFiling",
+    "NotesCategoryEditor",
+    "NotesCategoryButton",
+    "NotesMaterialButton",
+    "NotesCircleButton",
+    "NotesDismissButton",
+    "NotesBottomBlur",
+    "NotesTextView",
+    "NotesFormattingBar",
+    "NotesFormatSheet"
+  ]
+}

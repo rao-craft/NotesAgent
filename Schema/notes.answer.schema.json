@@ -1,0 +1,85 @@
+{
+  "$id" : "https://github.com/rao-craft/NotesAgent/blob/main/Schema/notes.answer.schema.json",
+  "$schema" : "https://json-schema.org/draft/2020-12/schema",
+  "allOf" : [
+    {
+      "$ref" : "https://github.com/riteshpakala/Granite/blob/main/Schema/granite-agent-answer.schema.json"
+    }
+  ],
+  "description" : "A granite-answer/1 answer; what notes makes and expects is one of its own kinds, and the root's initializer is a line the host writes a page body from.",
+  "properties" : {
+    "conformances" : {
+      "description" : "one line a mapping: the app's type and the role it takes, `Note: note`",
+      "items" : {
+        "type" : "string"
+      },
+      "type" : "array"
+    },
+    "expected" : {
+      "items" : {
+        "properties" : {
+          "kind" : {
+            "enum" : [
+              "view",
+              "conformance"
+            ],
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        },
+        "required" : [
+          "kind",
+          "name"
+        ],
+        "type" : "object"
+      },
+      "type" : "array"
+    },
+    "made" : {
+      "items" : {
+        "properties" : {
+          "kind" : {
+            "enum" : [
+              "view",
+              "conformance"
+            ],
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        },
+        "required" : [
+          "kind",
+          "name"
+        ],
+        "type" : "object"
+      },
+      "type" : "array"
+    },
+    "notes" : {
+      "description" : "one sentence each: what the call left out or the app still has to do, and why",
+      "items" : {
+        "type" : "string"
+      },
+      "type" : "array"
+    },
+    "roots" : {
+      "description" : "the root view's initializer as one line, with the app's note type in it: what a page body calls",
+      "items" : {
+        "type" : "string"
+      },
+      "type" : "array"
+    },
+    "views" : {
+      "description" : "the views written, by type name, the root first",
+      "items" : {
+        "type" : "string"
+      },
+      "type" : "array"
+    }
+  },
+  "title" : "What notes answers (granite-answer/1)"
+}

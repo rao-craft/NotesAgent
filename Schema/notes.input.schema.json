@@ -1,0 +1,83 @@
+{
+  "$id" : "https://github.com/rao-craft/NotesAgent/blob/main/Schema/notes.input.schema.json",
+  "$schema" : "https://json-schema.org/draft/2020-12/schema",
+  "description" : "Every field a call to notes may give; `directory` is Craft's, never the model's.",
+  "properties" : {
+    "categories" : {
+      "description" : "the categories the views start with: `general = General brown` (where new notes go), `memory = Memory green` (shown only under the memories button; none when left out), then one line a listed one, `Space brown` or `\"Machine Learning\" brown`, and `color = gray` for a new one",
+      "items" : {
+        "type" : "string"
+      },
+      "type" : "array"
+    },
+    "imports" : {
+      "description" : "modules the conformances import, such as the package a mapped type is declared in",
+      "items" : {
+        "type" : "string"
+      },
+      "type" : "array"
+    },
+    "into" : {
+      "description" : "the folder for the views, relative to the project; Components/Notes when left out",
+      "type" : "string"
+    },
+    "launch" : {
+      "description" : "`destination = state` for a launch with `-destination <name>`: grid, memories, categories, new, or editor and a note's id or title (`note = editor space-001`)",
+      "items" : {
+        "type" : "string"
+      },
+      "type" : "array"
+    },
+    "look" : {
+      "description" : "`role = Swift`, the app's names for the look: accent, card, cardShadow, buttonShadow, panel, titleColor, noteColor (colours); title, note, note2, cardTitle, cardDate, cardText, cardCategory, editorTitle (fonts); a role left out keeps the original's value",
+      "items" : {
+        "type" : "string"
+      },
+      "type" : "array"
+    },
+    "mappings" : {
+      "description" : "one line a role (note, category): `note: Note title=title body=body category=category date=createdAt new=Note(id: UUID().uuidString, title: \"\", body: \"\", category: \"General\", createdAt: Date())`; a bare path is read off the value and written back, anything else is Swift that may name `value`",
+      "items" : {
+        "type" : "string"
+      },
+      "type" : "array"
+    },
+    "motion" : {
+      "description" : "`key = animation` (`library.filter = .bouncy`) or `key = seconds` (`editor.deleteDelay = 0.6`); every key has a default",
+      "items" : {
+        "type" : "string"
+      },
+      "type" : "array"
+    },
+    "prefix" : {
+      "description" : "a prefix for the kit's types when the app already has those names: `Kit` writes KitNotesLibrary",
+      "type" : "string"
+    },
+    "sizes" : {
+      "description" : "`key = number`, any size in points, count or fraction (`grid.minimum = 160`, `picker.detent = 0.6`); every key has a default",
+      "items" : {
+        "type" : "string"
+      },
+      "type" : "array"
+    },
+    "strings" : {
+      "description" : "`key = text`, any word the views show (`library.title = Library`); `|` between the items of a list key (`editor.titlePlaceholder`); every key has a default",
+      "items" : {
+        "type" : "string"
+      },
+      "type" : "array"
+    },
+    "symbols" : {
+      "description" : "`key = name`, any SF Symbol the views draw (`library.new = plus`); every key has a default",
+      "items" : {
+        "type" : "string"
+      },
+      "type" : "array"
+    }
+  },
+  "required" : [
+
+  ],
+  "title" : "What notes takes (craft-agent/1)",
+  "type" : "object"
+}

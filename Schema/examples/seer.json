@@ -1,0 +1,8 @@
+{
+  "mappings": ["note: Note title=title body=body category=category date=createdAt new=Note(id: UUID().uuidString, title: \"\", body: \"\", category: \"General\", createdAt: Date())"],
+  "imports": ["SeerKit"],
+  "look": ["accent = Color.accent", "title = Font.brandTitle", "note = Font.brandNote", "note2 = Font.brandNote2"],
+  "strings": ["library.title = Library", "library.about = About Seer"],
+  "categories": ["general = General brown", "memory = Memory green", "Space brown", "Cooking brown", "\"Machine Learning\" brown", "\"Ancient History\" brown", "\"Music Theory\" brown"],
+  "launch": ["library = grid", "note = editor space-001"]
+}
