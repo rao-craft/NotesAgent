@@ -2,9 +2,9 @@ extension Template {
     static let notesProtocols = ##"""
 import SwiftUI
 
-/// A note as the notes views show and edit it: its title, its text, the category it is filed in and its date. The
-/// app's own note type conforms in `Conformances/`, written from a mapping line; a property a line leaves out shows
-/// its default here and keeps nothing the editor writes.
+/// A note as the notes views show and edit it: its title, its text, the category it is filed in, its date and whether
+/// it lives only on the server. The app's own note type conforms in `Conformances/`, written from a mapping line; a
+/// property a line leaves out shows its default here and keeps nothing the editor writes.
 protocol NoteRepresentable: Identifiable {
     /// The note's title, empty when it has none.
     var noteTitle: String { get set }
@@ -14,6 +14,8 @@ protocol NoteRepresentable: Identifiable {
     var noteCategory: String { get set }
     /// When the note was written; the grid shows the newest first.
     var noteDate: Date { get set }
+    /// Whether the note lives only on the app's server: its card wears the badge.
+    var noteCloudOnly: Bool { get }
     /// A new, empty note the editor starts from; nil when no control makes a note.
     static var notesNew: Self? { get }
 }
@@ -38,6 +40,8 @@ extension NoteRepresentable {
         get { .distantPast }
         set {}
     }
+
+    var noteCloudOnly: Bool { false }
 
     static var notesNew: Self? { nil }
 }

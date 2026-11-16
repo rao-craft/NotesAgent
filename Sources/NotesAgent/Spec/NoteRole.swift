@@ -1,5 +1,6 @@
 //  WHAT: The roles an app's types take in the notes views, and what each shows: a note (its title, its body, its
-//        category, its date, and how a new one is made) and a category (its id, name and colour).
+//        category, its date, whether it lives only on the server, and how a new one is made) and a category (its id,
+//        name and colour).
 
 import Foundation
 
@@ -51,6 +52,7 @@ enum NoteRole: String, Sendable, CaseIterable {
                 NoteProperty("body", "noteBody", .rich, written: true, aliases: ["text", "content"], doc: "The note's text, with its formatting when the field keeps it."),
                 NoteProperty("category", "noteCategory", .text, written: true, aliases: ["folder", "tag"], doc: "The id of the category the note is filed in, empty for the general one."),
                 NoteProperty("date", "noteDate", .date, written: true, aliases: ["created", "createdAt", "updated", "modified"], doc: "When the note was written; the grid shows the newest first."),
+                NoteProperty("cloud", "noteCloudOnly", .flag, aliases: ["cloudOnly", "server", "remote"], doc: "Whether the note lives only on the app's server: its card wears the badge."),
                 NoteProperty("new", "notesNew", .new, aliases: ["make", "empty"], doc: "A new, empty note the editor starts from; without it no control makes a note."),
             ]
         case .category:

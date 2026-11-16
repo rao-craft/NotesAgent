@@ -72,6 +72,11 @@ enum NotesValue {
     }
     static func color(_ value: String?) -> Color { value.map { color($0) } ?? NotesCategories.unlisted }
 
+    // MARK: Flags
+
+    static func flag(_ value: Bool) -> Bool { value }
+    static func flag(_ value: Bool?) -> Bool { value ?? false }
+
     // MARK: Writing back
 
     static func assign(_ value: String, to field: inout String) { field = value }

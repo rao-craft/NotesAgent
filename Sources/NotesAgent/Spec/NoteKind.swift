@@ -6,7 +6,7 @@
 import Foundation
 
 enum NoteKind: Sendable, Equatable {
-    case text, rich, date, color, new
+    case text, rich, date, color, flag, new
 
     /// The requirement's type in the protocol.
     var swiftType: String {
@@ -15,6 +15,7 @@ enum NoteKind: Sendable, Equatable {
         case .rich: return "AttributedString"
         case .date: return "Date"
         case .color: return "Color"
+        case .flag: return "Bool"
         case .new: return "Self?"
         }
     }
@@ -26,6 +27,7 @@ enum NoteKind: Sendable, Equatable {
         case .rich: return "rich"
         case .date: return "date"
         case .color: return "color"
+        case .flag: return "flag"
         case .new: return ""
         }
     }
@@ -37,6 +39,7 @@ enum NoteKind: Sendable, Equatable {
         case .rich: return ["AttributedString", "String"]
         case .date: return ["Date", "String", "Double", "Int"]
         case .color: return ["Color", "String"]
+        case .flag: return ["Bool"]
         case .new: return []
         }
     }
@@ -45,7 +48,7 @@ enum NoteKind: Sendable, Equatable {
     var writes: Set<String> {
         switch self {
         case .text, .rich, .date: return takes
-        case .color, .new: return []
+        case .color, .flag, .new: return []
         }
     }
 
@@ -56,6 +59,7 @@ enum NoteKind: Sendable, Equatable {
         case .rich: return "a note's text (an AttributedString or a String)"
         case .date: return "a date (a Date, an ISO String, or seconds as a Double or an Int)"
         case .color: return "a colour (a Color, or a String naming one: `brown`, `#AE9060`)"
+        case .flag: return "a Bool (a Bool field, or Swift like `true`)"
         case .new: return "a new value"
         }
     }

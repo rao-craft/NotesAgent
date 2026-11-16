@@ -20,8 +20,8 @@ writes with the turn.
 ## What you get
 
 - **The library.**
-  - A grid of note cards in adaptive columns: the title, the date, the opening lines and the category's dot and name,
-    newest first.
+  - A grid of note cards in adaptive columns: the title, the date and time, the opening lines and the category's dot
+    and name, newest first. A badge marks memories and notes that live only on your server.
   - A bar with a more menu and a category filter on one side, and memories and a new note on the other.
   - An empty state for no notes, and one for a filter with none.
   - A long press to change a note's category, share it or delete it.

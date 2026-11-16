@@ -183,7 +183,8 @@ struct NotesLibrary<Item: NoteRepresentable>: View {
                 date: note.noteDate,
                 text: String(note.noteBody.characters),
                 category: NotesCategory.resolve(note.noteCategory, in: shelf),
-                showsTitle: !isMemory(note)
+                showsTitle: !isMemory(note),
+                badged: isMemory(note) || note.noteCloudOnly
             )
             .padding(.horizontal, {{n:card.inset}})
             .padding(.bottom, {{n:card.below}})

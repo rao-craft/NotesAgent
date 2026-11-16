@@ -5,16 +5,17 @@ import XCTest
 /// Every line a call gives, read: what each field accepts, and each refusal with its reason.
 final class MappingLineTests: XCTestCase {
     func testANoteLineMapsEveryWordAndANewNote() throws {
-        let mapping = try MappingLine.parse(#"note: Note title=title body=body category=category date=createdAt new=Note(id: UUID().uuidString, title: "", body: "", category: "General", createdAt: Date())"#)
+        let mapping = try MappingLine.parse(#"note: Note title=title body=body category=category date=createdAt cloud=true new=Note(id: UUID().uuidString, title: "", body: "", category: "General", createdAt: Date())"#)
         XCTAssertEqual(mapping.role, .note)
         XCTAssertEqual(mapping.type, "Note")
-        XCTAssertEqual(mapping.assignments.map(\.property.key), ["title", "body", "category", "date", "new"])
+        XCTAssertEqual(mapping.assignments.map(\.property.key), ["title", "body", "category", "date", "cloud", "new"])
         XCTAssertEqual(mapping.source(of: "date"), .path("createdAt"))
+        XCTAssertEqual(mapping.source(of: "cloud"), .expression("true"), "`true` is Swift, not a field")
         XCTAssertEqual(mapping.source(of: "new"), .expression(#"Note(id: UUID().uuidString, title: "", body: "", category: "General", createdAt: Date())"#))
     }
 
     func testWordsAliasesPathsAndSwiftAreRead() throws {
-        let mapping = try MappingLine.parse(#"entry: Journal.Entry id=slug, name = headline ?? "Untitled", text=value.content, folder=meta?.mood created=writtenAt"#)
+        let mapping = try MappingLine.parse(#"entry: Journal.Entry id=slug, name = headline ?? "Untitled", text=value.content, folder=meta?.mood created=writtenAt server=isRemote"#)
         XCTAssertEqual(mapping.role, .note)
         XCTAssertEqual(mapping.type, "Journal.Entry")
         XCTAssertEqual(mapping.id, .path("slug"))
@@ -22,6 +23,7 @@ final class MappingLineTests: XCTestCase {
         XCTAssertEqual(mapping.source(of: "body"), .path("content"))
         XCTAssertEqual(mapping.source(of: "category"), .path("meta?.mood"))
         XCTAssertEqual(mapping.source(of: "date"), .path("writtenAt"))
+        XCTAssertEqual(mapping.source(of: "cloud"), .path("isRemote"))
         XCTAssertEqual(mapping.fileStem, "JournalEntry")
     }
 
@@ -37,7 +39,7 @@ final class MappingLineTests: XCTestCase {
             ("note Note title=title", "has no colon"),
             ("post: Note title=title", "`post` is not a role: a line starts with note or category"),
             ("note: note title=title", "is not a type name"),
-            ("note: Note heading=title author=writer", "`author` is not something a note shows; a note maps id, title, body, category, date, new"),
+            ("note: Note heading=title author=writer", "`author` is not something a note shows; a note maps id, title, body, category, date, cloud, new"),
             ("note: Note title=title name=headline", "`title` is mapped twice"),
             ("note: Note new=Note(title: value.title)", "`new` makes a new Note with no value to read"),
             ("note: Note title=", "`title` has `=` and no value"),
@@ -181,7 +183,7 @@ final class RefusalTests: XCTestCase {
         let folder = try Fixture.folder()
         try Fixture.write("struct Entry {\n    let slug: String\n    var headline: String\n    var tags: [String]\n}\n",
                           to: folder.appendingPathComponent("Models/Entry.swift"))
-        let input = NotesAgent.Input(prefix: "kit", mappings: ["note: Entry title=heading category=tags", "note: Entry title=headline"],
+        let input = NotesAgent.Input(prefix: "kit", mappings: ["note: Entry title=heading category=tags cloud=headline", "note: Entry title=headline"],
                                      imports: ["Seer Kit"], look: ["tint = Color.red"], strings: ["library.heading = Notes"],
                                      categories: ["Work = plaid"], launch: ["note = open"], directory: folder.path)
         XCTAssertThrowsError(try NotesAgent.write(input, note: { _ in }, yield: { _ in })) { error in
@@ -192,6 +194,7 @@ final class RefusalTests: XCTestCase {
                 "mappings: `Entry` has no `id`",
                 "mappings: note title=heading: `Entry` has no `heading`: its fields are slug, headline, tags",
                 "mappings: note category=tags: `tags` is `[String]`, and `category` shows text",
+                "mappings: note cloud=headline: `headline` is `String`, and `cloud` shows a Bool",
                 "mappings: `Entry` has no `id`",
                 "strings `library.heading = Notes`",
                 "look `tint = Color.red`",

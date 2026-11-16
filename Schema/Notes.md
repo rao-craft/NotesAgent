@@ -88,7 +88,7 @@ live in the view; `saveCategory` and `deleteCategory` keep them when the app has
 ## Mapping lines
 
 ```
-note: Note title=title body=body category=category date=createdAt new=Note(id: UUID().uuidString, title: "", body: "", category: "General", createdAt: Date())
+note: Note title=title body=body category=category date=createdAt cloud=true new=Note(id: UUID().uuidString, title: "", body: "", category: "General", createdAt: Date())
 category: Folder id=slug name=title color=tint
 ```
 
@@ -105,6 +105,7 @@ path through an optional is read and never written, with a note. One line a role
 | | `body` | text, content | `noteBody: AttributedString` | AttributedString, String | yes |
 | | `category` | folder, tag | `noteCategory: String`, the category's id or name; empty for the general one | String, Substring, UUID, Int | yes |
 | | `date` | created, createdAt, updated, modified | `noteDate: Date`; the grid shows the newest first | Date, ISO String, seconds as Double or Int | yes |
+| | `cloud` | cloudOnly, server, remote | `noteCloudOnly: Bool`: the note lives only on the app's server, and its card wears the badge; false when left out (`cloud=true` when every note is the server's) | Bool, or Swift (`true`) | — |
 | | `new` | make, empty | `static var notesNew: Self?`: Swift that makes an empty note; without it nothing makes a note | Swift | — |
 | | `id` | | `id`, when the type has no `id` of its own | String, Substring, UUID, Int | — |
 | `category` (or `folder`, `group`) | `name` | title | `noteCategoryName: String` | String, Substring, UUID, Int | — |
@@ -290,6 +291,7 @@ and `{general}` are filled in where the table says.
 | `library.filteredEmpty` | `pencil.and.scribble` | a filter with no notes |
 | `card.changeCategory` | `arrow.forward.folder` | a card's filing item |
 | `card.delete` | `trash.fill` | a card's delete item |
+| `card.cloud` | `point.3.filled.connected.trianglepath.dotted` | the badge on a memory's card and on a note that lives only on the server |
 | `sheet.dismiss` | `xmark` | a category sheet's close button |
 | `picker.off` | `circle` | a category that is not selected |
 | `picker.on` | `circle.fill` | the selected category |
@@ -332,6 +334,8 @@ and `{general}` are filled in where the table says.
 | `card.border` | `1` | a card's outline |
 | `card.lines` | `3` | the lines of text a card shows (whole) |
 | `card.dot` | `8` | the category dot on a card |
+| `card.cloudSymbol` | `11` | the symbol in a card's badge |
+| `card.cloudPadding` | `6` | the space around the symbol in a card's badge |
 | `empty.symbol` | `50` | an empty state's symbol |
 | `empty.inset` | `42` | an empty state's line, inset from the sides |
 | `empty.below` | `80` | the space under the empty grid's state |
@@ -368,6 +372,19 @@ and `{general}` are filled in where the table says.
 ## Changes
 
 Each change made to make this agent more precise, dated, with the run that measured it. Newest first.
+
+### 2026-11-15 · the card's date and time, and its badge
+
+Measured on the r6b floor (NotesAgent at 431f8b6) against Seer's reference shots. A card's date now reads as the
+original's does, the day and the time on one line (the time alone for today's), cut off at the card's edge as the
+reference shows it ("Nov 12, 2026 at 6:05…"); it was the day alone, so all eleven of the Library's missing lines were
+dates. Each card also stood about 8 pt short, its category row sitting about 5 pt high: the original ends that row
+with a badge (`point.3.filled.connected.trianglepath.dotted` in an ultra-thin circle) on a memory and on a note that
+lives only on the server, and every note in the reference is one. The note word `cloud` says which notes those are, a
+memory's card always wears the badge, and the Seer call maps `cloud=true`. The hairline above the category row stays:
+the original draws it (`Divider().padding(.vertical, 2)`) and the reference shows it.
+
+Measured: r6b, before the change. The next floor is the first measure.
 
 ### 2026-11-15 · a new note already written: `new "<title>" "<text>"`
 

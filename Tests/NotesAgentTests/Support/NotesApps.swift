@@ -159,7 +159,7 @@ enum NotesApps {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 160))]) {
                         ForEach(grid) { note in
                             NoteCard(title: note.noteTitle, date: note.noteDate, text: String(note.noteBody.characters),
-                                     category: NotesCategory.resolve(note.noteCategory, in: shelf))
+                                     category: NotesCategory.resolve(note.noteCategory, in: shelf), badged: note.noteCloudOnly)
                                 .padding(.horizontal, 4)
                                 .padding(.bottom, 8)
                         }
@@ -169,7 +169,8 @@ enum NotesApps {
                 }
                 if let memory = NotesCategories.memory {
                     draw("memory-card") {
-                        NoteCard(title: notes[4].title, date: notes[4].createdAt, text: notes[4].body, category: memory, showsTitle: false)
+                        NoteCard(title: notes[4].title, date: notes[4].createdAt, text: notes[4].body, category: memory, showsTitle: false,
+                                 badged: true)
                             .frame(width: 175)
                             .padding()
                     }

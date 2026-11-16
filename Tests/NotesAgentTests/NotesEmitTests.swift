@@ -52,6 +52,7 @@ final class NotesEmitTests: XCTestCase {
                     get { NotesValue.date(self.createdAt) }
                     set { NotesValue.assign(newValue, to: &self.createdAt) }
                 }
+                var noteCloudOnly: Bool { NotesValue.flag(true) }
                 /// A new, empty note the editor starts from.
                 static var notesNew: Note? { Note(id: UUID().uuidString, title: "", body: "", category: "General", createdAt: Date()) }
             }
@@ -74,9 +75,16 @@ final class NotesEmitTests: XCTestCase {
         for name in ["Space", "Cooking", "Machine Learning", "Ancient History", "Music Theory"] {
             XCTAssertTrue(categories.contains(#"        NotesCategory(name: "\#(name)", color: Color.brown),"#), name)
         }
+        let card = try Fixture.text(result.paths, "NoteCard.swift")
+        XCTAssertTrue(card.contains("Text(date.formatted(date: Calendar.current.isDateInToday(date) ? .omitted : .abbreviated, time: .shortened))"),
+                      "the reference shots' date: the day and the time on one line, cut off at the card's edge")
+        XCTAssertTrue(card.contains(#"Image(systemName: "point.3.filled.connected.trianglepath.dotted")"#))
+        let library = try Fixture.text(result.paths, "NotesLibrary.swift")
+        XCTAssertTrue(library.contains("badged: isMemory(note) || note.noteCloudOnly"), "`cloud=true` badges every card, as in the reference shots")
         let launch = try Fixture.text(result.paths, "NotesLaunch.swift")
         XCTAssertTrue(launch.contains(#"        switch UserDefaults.standard.string(forKey: "destination") {"#))
         XCTAssertTrue(launch.contains(#"        case "library": return .grid"#))
+        XCTAssertTrue(launch.contains(#"        case "library.categories": return .categories"#))
         XCTAssertTrue(launch.contains(#"        case "note": return .draft(title: "Launch windows", body: "Mars and Earth line up for a low-energy transfer only about every twenty-six months. Miss the window and the trip costs far more fuel, or waits for the next one.\n\nPerseverance left in July 2020 and landed in February 2021. Seven months is the usual length of the crossing.")"#),
                       "the note the reference shot shows: a new one, its title and two paragraphs written")
         XCTAssertTrue(launch.contains("        case draft(title: String, body: String)"))

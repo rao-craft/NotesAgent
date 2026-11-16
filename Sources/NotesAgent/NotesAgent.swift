@@ -93,9 +93,11 @@ public struct NotesAgent: GraniteAgentPackage {
         await library.load() }, save: { try await library.save(note: $0) }, delete: { try await \
         library.delete(note: $0) }, about: { layout.present(.about) }, toast: { modals.toast($0, style: .success) })`. \
         A closure left out removes its control. `mappings` make the app's note type the views' note, one line a \
-        role: note (title, body, category, date, new) and category (name, color, and id=). A bare path is read off \
-        the value and written back when the editor changes it (`date=createdAt`); anything else is Swift that may \
-        name `value` and is only read. `new=` is Swift that makes an empty note (without it nothing makes a note). \
+        role: note (title, body, category, date, cloud, new) and category (name, color, and id=). A bare path is \
+        read off the value and written back when the editor changes it (`date=createdAt`); anything else is Swift \
+        that may name `value` and is only read. `cloud=` says a note lives only on the app's server and its card \
+        wears the badge (`cloud=true` when every note is the server's). `new=` is Swift that makes an empty note \
+        (without it nothing makes a note). \
         A body may be a String or an AttributedString, a date a Date, an ISO string or seconds; say `id=` only \
         when the type has no `id`; a type from a package needs `imports`. `look` maps the look roles to the app's \
         names (`accent = Color.accent`, `title = Font.brandTitle`). `strings`, `symbols`, `sizes` and `motion` set \
